@@ -37,6 +37,37 @@ describe("parse", function () {
     ]);
   });
 
+  it("multi-byte characters", function () {
+    let contentLength = "안녕하세요 세계".length;
+    let openLength = "<template>".length;
+    let closeLength = "</template>".length;
+    let output = p.parse("<template>안녕하세요 세계</template>");
+
+    expect(output).to.eql([
+      {
+        type: "expression",
+        tagName: "template",
+        contents: "안녕하세요 세계",
+        range: {
+          start: 0,
+          end: openLength + contentLength + closeLength,
+        },
+        contentRange: {
+          start: openLength,
+          end: openLength + contentLength,
+        },
+        startRange: {
+          end: openLength,
+          start: 0,
+        },
+        endRange: {
+          start: openLength + contentLength - 1,
+          end: openLength + contentLength + closeLength,
+        },
+      },
+    ]);
+  });
+
   it("expression position", function () {
     let output = p.parse("const tpl = <template>Hello!</template>");
 
