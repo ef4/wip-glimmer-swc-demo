@@ -157,8 +157,7 @@ test!(
         ))
     },
     content_tag_template_expression,
-    r#"let x = <template>Hello</template>"#,
-    r#"let x = template(`Hello`, { eval() { return eval(arguments[0]); }})"#
+    r#"let x = <template>Hello</template>"#
 );
 
 test!(
@@ -168,12 +167,7 @@ test!(
         None,
     )),
     content_tag_template_member,
-    r#"class X { <template>Hello</template> } "#,
-    r#"class X {
-      static {
-          template(`Hello`, { component: this, eval() { return eval(arguments[0]) }},);
-      }
-  }"#
+    r#"class X { <template>Hello</template> } "#
 );
 
 test!(
@@ -183,10 +177,7 @@ test!(
         None,
     )),
     expression_inside_class_member,
-    r#"class X { thing = <template>Hello</template> } "#,
-    r#"class X {
-        thing = template(`Hello`, { eval() { return eval(arguments[0]) }},);
-    }"#
+    r#"class X { thing = <template>Hello</template> } "#
 );
 
 test!(
@@ -196,12 +187,8 @@ test!(
         None,
     )),
     class_member_inside_expression,
-    r#"let x = class { <template>Hello</template> } "#,
-    r#"let x = class {
-        static {
-            template(`Hello`, { component: this, eval() { return eval(arguments[0]) }},);
-        }
-    }"#
+    r#"let x = class { <template>Hello</template> } "#
+   
 );
 
 test!(
@@ -211,8 +198,7 @@ test!(
         None,
     )),
     content_tag_export_default,
-    r#"<template>Hello</template>"#,
-    r#"export default template(`Hello`, { eval() { return eval(arguments[0]) }},);"#
+    r#"<template>Hello</template>"#
 );
 
 test!(
@@ -222,8 +208,7 @@ test!(
         None,
     )),
     inner_expression,
-    r#"let x = doIt(<template>Hello</template>)"#,
-    r#"let x = doIt(template(`Hello`, { eval() { return eval(arguments[0]) }}))"#
+    r#"let x = doIt(<template>Hello</template>)"#
 );
 
 test!(
@@ -233,8 +218,7 @@ test!(
         None,
     )),
     backtick_in_template,
-    r#"let x = <template>He`llo</template>"#,
-    r#"let x = template(`He\`llo`, { eval() { return eval(arguments[0]) }})"#
+    r#"let x = <template>He`llo</template>"#
 );
 
 test!(
@@ -244,8 +228,7 @@ test!(
         None,
     )),
     dollar_in_template,
-    r#"let x = <template>He${ll}o</template>"#,
-    r#"let x = template(`He\${ll}o`, { eval() { return eval(arguments[0]) }})"#
+    r#"let x = <template>He${ll}o</template>"#
 );
 
 test!(
@@ -255,6 +238,5 @@ test!(
         None,
     )),
     do_not_interpret_js_escapes_in_hbs,
-    r#"let x = <template>Hello\nWorld\u1234</template>"#,
-    r#"let x = template(`Hello\\nWorld\\u1234`, { eval() { return eval(arguments[0]) }})"#
+    r#"let x = <template>Hello\nWorld\u1234</template>"#
 );

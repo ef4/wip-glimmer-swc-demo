@@ -3,22 +3,19 @@
 #[macro_use]
 extern crate lazy_static;
 
-use base64::{engine::general_purpose, Engine as _};
 use std::path::PathBuf;
+
+use base64::{Engine as _, engine::general_purpose};
+use swc_atoms::Atom;
+use swc_common::{self, FileName, SourceMap, sync::Lrc};
 use swc_common::comments::SingleThreadedComments;
 use swc_common::source_map::SourceMapGenConfig;
-use swc_common::{self, sync::Lrc, FileName, SourceMap, Mark};
 use swc_core::common::GLOBALS;
-use swc_ecma_ast::{
-    Ident, ImportDecl, ImportNamedSpecifier, ImportSpecifier, Module, ModuleDecl,
-    ModuleExportName, ModuleItem,
-};
+use swc_ecma_ast::{Ident, ImportDecl, ImportNamedSpecifier, ImportSpecifier, Module, ModuleDecl, ModuleExportName, ModuleItem};
 use swc_ecma_codegen::Emitter;
 use swc_ecma_parser::{lexer::Lexer, Parser, StringInput, Syntax, TsConfig};
-use swc_ecma_transforms::hygiene::hygiene_with_config;
-use swc_ecma_transforms::resolver;
 use swc_ecma_utils::private_ident;
-use swc_ecma_visit::{as_folder, VisitMutWith, VisitWith};
+use swc_ecma_visit::{as_folder, VisitMut, VisitMutWith, VisitWith};
 
 mod bindings;
 mod snippets;
@@ -45,6 +42,23 @@ impl SourceMapGenConfig for SourceMapConfig {
     fn inline_sources_content(&self, _: &swc_common::FileName) -> bool {
         true
     }
+}
+
+
+pub struct IdentCollector {
+  pub idents: Vec<Atom>
+}
+
+impl IdentCollector {
+  pub fn new() -> Self {
+    Self { idents: vec![] }
+  }
+}
+
+impl VisitMut for IdentCollector {
+  fn visit_mut_ident(&mut self, n: &mut Ident) {
+    self.idents.push(n.sym.clone())
+  }
 }
 
 
@@ -116,9 +130,25 @@ impl Preprocessor {
         GLOBALS.set(&Default::default(), || {
             let mut parsed_module = parser.parse_module()?;
 
+            let mut ident_collector = IdentCollector::new();
+            parsed_module.visit_mut_with(&mut as_folder(&mut ident_collector));
+
             let found_id = find_existing_import(&parsed_module, target_module, target_specifier);
             let had_id_already = found_id.is_some();
-            let id = found_id.unwrap_or_else(|| private_ident!(target_specifier));
+            let mut new_specifier = String::from(target_specifier);
+            if !had_id_already {
+              let mut n = 1;
+              loop {
+                let current = Atom::from(new_specifier.clone());
+                let found = ident_collector.idents.contains(&current);
+                if found == false {
+                  break
+                }
+                new_specifier = format!("{target_specifier}{n}");
+                n = n + 1;
+              }
+            }
+            let id = found_id.unwrap_or_else(|| private_ident!(new_specifier));
             let mut needs_import = false;
             parsed_module.visit_mut_with(&mut as_folder(transform::TransformVisitor::new(
                 &id,
@@ -128,19 +158,6 @@ impl Preprocessor {
             if !had_id_already && needs_import {
                 insert_import(&mut parsed_module, target_module, target_specifier, &id)
             }
-
-            let unresolved_mark = Mark::new();
-            let top_level_mark = Mark::new();
-
-            parsed_module.visit_mut_with(&mut resolver(unresolved_mark, top_level_mark, false));
-
-            let mut h = hygiene_with_config(swc_ecma_transforms::hygiene::Config {
-                keep_class_names: true,
-                top_level_mark,
-                safari_10: false,
-                ignore_eval: false,
-            });
-            parsed_module.visit_mut_with(&mut h);
 
             simplify_imports(&mut parsed_module);
 
@@ -246,6 +263,7 @@ fn insert_import(
             src: Box::new(target_module.into()),
             type_only: false,
             with: None,
+            phase: Default::default(),
         })),
     );
 }
@@ -359,5 +377,19 @@ testcase! {
        function makeComponent(message: string) {
          console.log(message);
          return template(`hello`, { eval() { return eval(arguments[0]) } });
+       }"#
+}
+
+testcase! {
+  handles_typescript_this,
+  r#"function f(this: Context, ...args: unknown[]) {
+        function t(this: Context, ...args: unknown[]) {};
+        return <template></template>
+    }"#,
+  r#"import { template } from "@ember/template-compiler";
+       function f(this: Context, ...args: unknown[]) {
+         function t(this: Context, ...args: unknown[]) {}
+         ;
+         return template(``, { eval() { return eval(arguments[0]) } });
        }"#
 }

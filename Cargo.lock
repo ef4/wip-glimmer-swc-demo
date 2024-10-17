@@ -88,10 +88,9 @@ checksum = "96d30a06541fbafbc7f82ed10c06164cfbd2c401138f6addd8404629c4b16711"
 
 [[package]]
 name = "ast_node"
-version = "0.9.5"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.9.6"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "swc_macros_common",
@@ -144,12 +143,6 @@ dependencies = [
 
 [[package]]
 name = "base64"
-version = "0.13.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
-
-[[package]]
-name = "base64"
 version = "0.21.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9ba43ea6f343b788c8764558649e08df62f86c6ef251fdaeb1ffd010a9ae50a2"
@@ -157,7 +150,7 @@ checksum = "9ba43ea6f343b788c8764558649e08df62f86c6ef251fdaeb1ffd010a9ae50a2"
 [[package]]
 name = "better_scoped_tls"
 version = "0.1.1"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "scoped-tls",
 ]
@@ -185,27 +178,24 @@ dependencies = [
 
 [[package]]
 name = "browserslist-rs"
-version = "0.12.4"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d9bda9b4595376bf255f68dafb5dcc5b0e2842b38dc2a7b52c4e0bfe9fd1c651"
+checksum = "405bbd46590a441abe5db3e5c8af005aa42e640803fecb51912703e93e4ce8d3"
 dependencies = [
  "ahash",
  "anyhow",
  "chrono",
  "either",
- "getrandom",
+ "indexmap",
  "itertools",
- "js-sys",
  "nom",
  "once_cell",
  "quote",
  "serde",
- "serde-wasm-bindgen",
  "serde_json",
  "string_cache",
  "string_cache_codegen",
  "thiserror",
- "wasm-bindgen",
 ]
 
 [[package]]
@@ -247,6 +237,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "cargo_metadata"
+version = "0.18.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2d886547e41f740c616ae73108f6eb70afe6d940c7bc697cb30f13daec073037"
+dependencies = [
+ "camino",
+ "cargo-platform",
+ "semver 1.0.19",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "cc"
 version = "1.0.83"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -269,9 +273,7 @@ checksum = "7f2c685bad3eb3d45a01354cedb7d5faa66194d1d58ba6e267a8de788f79db38"
 dependencies = [
  "android-tzdata",
  "iana-time-zone",
- "js-sys",
  "num-traits",
- "wasm-bindgen",
  "windows-targets",
 ]
 
@@ -279,8 +281,9 @@ dependencies = [
 name = "content-tag"
 version = "1.1.2"
 dependencies = [
- "base64 0.21.4",
+ "base64",
  "difference",
+ "getrandom",
  "js-sys",
  "lazy_static",
  "serde",
@@ -388,15 +391,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "deranged"
-version = "0.3.11"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b42b6fa04a440b495c8b04d0e71b707c585f83cb9cb28cf8cd0d976c315e31b4"
-dependencies = [
- "powerfmt",
-]
-
-[[package]]
 name = "diff"
 version = "0.1.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -423,26 +417,6 @@ name = "either"
 version = "1.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a26ae43d7bcc3b814de94796a5e736d4029efb0ee900c12e2d54c993ad1a1e07"
-
-[[package]]
-name = "enum-iterator"
-version = "1.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7add3873b5dd076766ee79c8e406ad1a472c385476b9e38849f8eec24f1be689"
-dependencies = [
- "enum-iterator-derive",
-]
-
-[[package]]
-name = "enum-iterator-derive"
-version = "1.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eecf8589574ce9b895052fa12d69af7a233f99e6107f5cb8dd1044f2a17bfdcb"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.38",
-]
 
 [[package]]
 name = "equivalent"
@@ -494,10 +468,9 @@ dependencies = [
 
 [[package]]
 name = "from_variant"
-version = "0.1.6"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.1.7"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "swc_macros_common",
  "syn 2.0.38",
@@ -527,18 +500,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "getset"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e45727250e75cc04ff2846a66397da8ef2b3db8e40e0cef4df67950a07621eb9"
-dependencies = [
- "proc-macro-error",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
 name = "gimli"
 version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -549,12 +510,6 @@ name = "glob"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
-
-[[package]]
-name = "hashbrown"
-version = "0.12.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a9ee70c43aaf417c914396645a0fa852624801b24ebb7ae78fe8272889ac888"
 
 [[package]]
 name = "hashbrown"
@@ -570,6 +525,12 @@ name = "hashbrown"
 version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7dfda62a12f55daeae5015f81b0baea145391cb4520f86c248fc615d72640d12"
+
+[[package]]
+name = "hashbrown"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e087f84d4f86bf4b218b927129862374b72199ae7d8657835f1e89000eea4fb"
 
 [[package]]
 name = "hermit-abi"
@@ -591,6 +552,19 @@ name = "hex"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
+
+[[package]]
+name = "hstr"
+version = "0.2.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "17fafeca18cf0927e23ea44d7a5189c10536279dfe9094e0dfa953053fbb5377"
+dependencies = [
+ "new_debug_unreachable",
+ "once_cell",
+ "phf",
+ "rustc-hash",
+ "smallvec",
+]
 
 [[package]]
 name = "iana-time-zone"
@@ -633,23 +607,13 @@ checksum = "cb56e1aa765b4b4f3aadfab769793b7087bb03a4ea4920644a6d238e2df5b9ed"
 
 [[package]]
 name = "indexmap"
-version = "1.9.3"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bd070e393353796e801d209ad339e89596eb4c8d430d18ede6a1cced8fafbd99"
-dependencies = [
- "autocfg",
- "hashbrown 0.12.3",
- "serde",
-]
-
-[[package]]
-name = "indexmap"
-version = "2.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8adf3ddd720272c6ea8bf59463c04e0f93d0bbf7c5439b691bca2987e0270897"
+checksum = "707907fe3c25f5424cce2cb7e1cbcafee6bdbe735ca90ef77c29e84591e5b9da"
 dependencies = [
  "equivalent",
- "hashbrown 0.14.1",
+ "hashbrown 0.15.0",
+ "serde",
 ]
 
 [[package]]
@@ -673,9 +637,9 @@ checksum = "616cde7c720bb2bb5824a224687d8f77bfd38922027f01d825cd7453be5099fb"
 
 [[package]]
 name = "itertools"
-version = "0.10.5"
+version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0fd2260e829bddf4cb6ea802289de2f86d6a7a690192fbe91b3f46e0f2c8473"
+checksum = "ba291022dbbd398a455acf126c1e341954079855bc60dfdda641363bd6922569"
 dependencies = [
  "either",
 ]
@@ -688,9 +652,9 @@ checksum = "af150ab688ff2122fcef229be89cb50dd66af9e01a4ff320cc137eecc9bacc38"
 
 [[package]]
 name = "js-sys"
-version = "0.3.64"
+version = "0.3.72"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c5f195fe497f702db0f318b07fdd68edb16955aed830df8363d837542f8f935a"
+checksum = "6a88f1bda2bd75b0452a14784937d796722fdebfe50df998aeb3f0b7603019a9"
 dependencies = [
  "wasm-bindgen",
 ]
@@ -865,12 +829,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "num-conv"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51d515d32fb182ee37cda2ccdcb92950d6a3c2893aa280e540671c2cd0f3b1d9"
-
-[[package]]
 name = "num-integer"
 version = "0.1.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -910,9 +868,9 @@ dependencies = [
 
 [[package]]
 name = "once_cell"
-version = "1.18.0"
+version = "1.20.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd8b5dd2ae5ed71462c540258bedcb51965123ad7e7ccf4b9a8cafaa4a63576d"
+checksum = "1261fe7e33c73b354eab43b1273a57c8f967d0391e80353e51f764ac02cf6775"
 
 [[package]]
 name = "overload"
@@ -974,18 +932,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e1d3afd2628e69da2be385eb6f2fd57c8ac7977ceeff6dc166ff1657b0e386a9"
 dependencies = [
  "fixedbitset",
- "indexmap 2.0.2",
+ "indexmap",
 ]
 
 [[package]]
 name = "phf"
-version = "0.10.1"
+version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fabbf1ead8a5bcbc20f5f8b939ee3f5b0f6f281b6ad3468b84656b658b455259"
+checksum = "ade2d8b8f33c7333b51bcf0428d37e217e9f32192ae4772156f65063b8ce03dc"
 dependencies = [
  "phf_macros",
- "phf_shared",
- "proc-macro-hack",
+ "phf_shared 0.11.2",
 ]
 
 [[package]]
@@ -994,22 +951,31 @@ version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d5285893bb5eb82e6aaf5d59ee909a06a16737a8970984dd7746ba9283498d6"
 dependencies = [
- "phf_shared",
+ "phf_shared 0.10.0",
+ "rand",
+]
+
+[[package]]
+name = "phf_generator"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "48e4cc64c2ad9ebe670cb8fd69dd50ae301650392e81c05f9bfcb2d5bdbc24b0"
+dependencies = [
+ "phf_shared 0.11.2",
  "rand",
 ]
 
 [[package]]
 name = "phf_macros"
-version = "0.10.0"
+version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58fdf3184dd560f160dd73922bea2d5cd6e8f064bf4b13110abd81b03697b4e0"
+checksum = "3444646e286606587e49f3bcf1679b8cef1dc2c5ecc29ddacaffc305180d464b"
 dependencies = [
- "phf_generator",
- "phf_shared",
- "proc-macro-hack",
+ "phf_generator 0.11.2",
+ "phf_shared 0.11.2",
  "proc-macro2",
  "quote",
- "syn 1.0.109",
+ "syn 2.0.38",
 ]
 
 [[package]]
@@ -1017,6 +983,15 @@ name = "phf_shared"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6796ad771acdc0123d2a88dc428b5e38ef24456743ddb1744ed628f9815c096"
+dependencies = [
+ "siphasher",
+]
+
+[[package]]
+name = "phf_shared"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "90fcb95eef784c2ac79119d1dd819e162b5da872ce6f3c3abe1e8ca1c082f72b"
 dependencies = [
  "siphasher",
 ]
@@ -1039,12 +1014,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "powerfmt"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "439ee305def115ba05938db6eb1644ff94165c5ab5e9420d1c1bcedbba909391"
-
-[[package]]
 name = "ppv-lite86"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1058,8 +1027,8 @@ checksum = "925383efa346730478fb4838dbe9137d2a47675ad789c546d150a6e1dd4ab31c"
 
 [[package]]
 name = "preset_env_base"
-version = "0.4.5"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "ahash",
  "anyhow",
@@ -1106,12 +1075,6 @@ dependencies = [
  "quote",
  "version_check",
 ]
-
-[[package]]
-name = "proc-macro-hack"
-version = "0.5.20+deprecated"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc375e1527247fe1a97d8b7156678dfe7c1af2fc075c9a4db3690ecd2a148068"
 
 [[package]]
 name = "proc-macro2"
@@ -1303,9 +1266,9 @@ checksum = "1ad4cc8da4ef723ed60bced201181d83791ad433213d8c24efffda1eec85d741"
 
 [[package]]
 name = "ryu-js"
-version = "0.2.2"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6518fc26bced4d53678a22d6e423e9d8716377def84545fe328236e3af070e7f"
+checksum = "ad97d4ce1560a5e27cec89519dc8300d1aa6035b099821261c651486a19e44d5"
 
 [[package]]
 name = "scoped-tls"
@@ -1345,18 +1308,18 @@ checksum = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
 
 [[package]]
 name = "serde"
-version = "1.0.188"
+version = "1.0.193"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf9e0fcba69a370eed61bcf2b728575f726b50b55cba78064753d708ddc7549e"
+checksum = "25dd9975e68d0cb5aa1120c288333fc98731bd1dd12f561e468ea4728c042b89"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde-wasm-bindgen"
-version = "0.4.5"
+version = "0.6.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3b4c031cd0d9014307d82b8abf653c0290fbdaeb4c02d00c63cf52f728628bf"
+checksum = "8302e169f0eddcc139c70f139d19d6467353af16f9fce27e8c30158036a1e16b"
 dependencies = [
  "js-sys",
  "serde",
@@ -1365,9 +1328,9 @@ dependencies = [
 
 [[package]]
 name = "serde_derive"
-version = "1.0.188"
+version = "1.0.193"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4eca7ac642d82aa35b60049a6eccb4be6be75e599bd2e9adb5f875a737654af2"
+checksum = "43576ca501357b9b071ac53cdc7da8ef0cbd9493d8df094cd821777ea6e894d3"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1390,6 +1353,17 @@ name = "sha-1"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "028f48d513f9678cda28f6e4064755b3fbb2af6acd672f2c209b62323f7aea0f"
+dependencies = [
+ "cfg-if",
+ "cpufeatures",
+ "digest",
+]
+
+[[package]]
+name = "sha2"
+version = "0.10.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "793db75ad2bcafc3ffa7c68b215fee268f537982cd901d132f89c6343f3a3dc8"
 dependencies = [
  "cfg-if",
  "cpufeatures",
@@ -1461,12 +1435,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "stable_deref_trait"
-version = "1.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
-
-[[package]]
 name = "stacker"
 version = "0.1.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1506,7 +1474,7 @@ dependencies = [
  "new_debug_unreachable",
  "once_cell",
  "parking_lot",
- "phf_shared",
+ "phf_shared 0.10.0",
  "precomputed-hash",
  "serde",
 ]
@@ -1517,18 +1485,17 @@ version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6bb30289b722be4ff74a408c3cc27edeaad656e06cb1fe8fa9231fa59c728988"
 dependencies = [
- "phf_generator",
- "phf_shared",
+ "phf_generator 0.10.0",
+ "phf_shared 0.10.0",
  "proc-macro2",
  "quote",
 ]
 
 [[package]]
 name = "string_enum"
-version = "0.4.1"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.4.2"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "swc_macros_common",
@@ -1565,14 +1532,14 @@ dependencies = [
 
 [[package]]
 name = "swc"
-version = "0.266.38"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.273.14"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
- "base64 0.13.1",
+ "base64",
  "dashmap",
  "either",
- "indexmap 1.9.3",
+ "indexmap",
  "jsonc-parser",
  "lru",
  "once_cell",
@@ -1612,21 +1579,19 @@ dependencies = [
 
 [[package]]
 name = "swc_atoms"
-version = "0.5.9"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.6.5"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
+ "hstr",
  "once_cell",
  "rustc-hash",
  "serde",
- "string_cache",
- "string_cache_codegen",
- "triomphe",
 ]
 
 [[package]]
 name = "swc_cached"
-version = "0.3.17"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.3.19"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "ahash",
  "anyhow",
@@ -1638,8 +1603,8 @@ dependencies = [
 
 [[package]]
 name = "swc_common"
-version = "0.32.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.33.18"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "ahash",
  "ast_node",
@@ -1656,7 +1621,6 @@ dependencies = [
  "serde",
  "siphasher",
  "sourcemap",
- "string_cache",
  "swc_atoms",
  "swc_eq_ignore_macros",
  "swc_visit",
@@ -1668,11 +1632,12 @@ dependencies = [
 
 [[package]]
 name = "swc_compiler_base"
-version = "0.1.11"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.7.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
- "base64 0.13.1",
+ "base64",
+ "once_cell",
  "pathdiff",
  "serde",
  "sourcemap",
@@ -1689,21 +1654,23 @@ dependencies = [
 
 [[package]]
 name = "swc_config"
-version = "0.1.7"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.1.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "indexmap 1.9.3",
+ "anyhow",
+ "indexmap",
  "serde",
  "serde_json",
+ "sourcemap",
+ "swc_cached",
  "swc_config_macro",
 ]
 
 [[package]]
 name = "swc_config_macro"
-version = "0.1.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.1.3"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "swc_macros_common",
@@ -1712,8 +1679,8 @@ dependencies = [
 
 [[package]]
 name = "swc_core"
-version = "0.83.41"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.90.15"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "swc_atoms",
  "swc_common",
@@ -1726,12 +1693,13 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_ast"
-version = "0.109.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.112.4"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "bitflags 2.4.0",
  "is-macro",
  "num-bigint",
+ "phf",
  "scoped-tls",
  "serde",
  "string_enum",
@@ -1742,8 +1710,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_codegen"
-version = "0.145.7"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.148.8"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "memchr",
  "num-bigint",
@@ -1760,10 +1728,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_codegen_macros"
-version = "0.7.3"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.7.4"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "swc_macros_common",
@@ -1771,9 +1738,192 @@ dependencies = [
 ]
 
 [[package]]
+name = "swc_ecma_compat_bugfixes"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_compat_es2015",
+ "swc_ecma_transforms_base",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_common"
+version = "0.4.8"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2015"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "arrayvec",
+ "indexmap",
+ "is-macro",
+ "serde",
+ "serde_derive",
+ "smallvec",
+ "swc_atoms",
+ "swc_common",
+ "swc_config",
+ "swc_ecma_ast",
+ "swc_ecma_compat_common",
+ "swc_ecma_transforms_base",
+ "swc_ecma_transforms_classes",
+ "swc_ecma_transforms_macros",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2016"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_transforms_base",
+ "swc_ecma_transforms_macros",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2017"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "serde",
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_transforms_base",
+ "swc_ecma_transforms_macros",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2018"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "serde",
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_compat_common",
+ "swc_ecma_transforms_base",
+ "swc_ecma_transforms_macros",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2019"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_transforms_base",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2020"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "serde",
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_compat_es2022",
+ "swc_ecma_transforms_base",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2021"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_transforms_base",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es2022"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_atoms",
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_compat_common",
+ "swc_ecma_transforms_base",
+ "swc_ecma_transforms_classes",
+ "swc_ecma_transforms_macros",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
+name = "swc_ecma_compat_es3"
+version = "0.4.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
+dependencies = [
+ "swc_common",
+ "swc_ecma_ast",
+ "swc_ecma_transforms_base",
+ "swc_ecma_utils",
+ "swc_ecma_visit",
+ "swc_trace_macro",
+ "tracing",
+]
+
+[[package]]
 name = "swc_ecma_ext_transforms"
-version = "0.109.3"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.113.8"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "phf",
  "swc_atoms",
@@ -1785,8 +1935,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_lints"
-version = "0.88.10"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.92.13"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "auto_impl",
  "dashmap",
@@ -1804,8 +1954,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_loader"
-version = "0.44.5"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.45.20"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
  "dashmap",
@@ -1817,6 +1967,7 @@ dependencies = [
  "pathdiff",
  "serde",
  "serde_json",
+ "swc_atoms",
  "swc_cached",
  "swc_common",
  "tracing",
@@ -1824,11 +1975,11 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_minifier"
-version = "0.187.31"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.192.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "arrayvec",
- "indexmap 1.9.3",
+ "indexmap",
  "num-bigint",
  "num_cpus",
  "once_cell",
@@ -1840,7 +1991,6 @@ dependencies = [
  "serde",
  "serde_json",
  "swc_atoms",
- "swc_cached",
  "swc_common",
  "swc_config",
  "swc_ecma_ast",
@@ -1857,12 +2007,14 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_parser"
-version = "0.140.1"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.143.6"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "either",
+ "new_debug_unreachable",
  "num-bigint",
  "num-traits",
+ "phf",
  "serde",
  "smallvec",
  "smartstring",
@@ -1876,12 +2028,12 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_preset_env"
-version = "0.201.31"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.206.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
  "dashmap",
- "indexmap 1.9.3",
+ "indexmap",
  "once_cell",
  "preset_env_base",
  "rustc-hash",
@@ -1900,20 +2052,20 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_testing"
-version = "0.21.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.22.20"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
  "hex",
- "sha-1",
+ "sha2",
  "testing",
  "tracing",
 ]
 
 [[package]]
 name = "swc_ecma_transforms"
-version = "0.224.28"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.229.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "swc_atoms",
  "swc_common",
@@ -1931,12 +2083,12 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_base"
-version = "0.133.9"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.137.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "better_scoped_tls",
  "bitflags 2.4.0",
- "indexmap 1.9.3",
+ "indexmap",
  "once_cell",
  "phf",
  "rustc-hash",
@@ -1953,8 +2105,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_classes"
-version = "0.122.9"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.126.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "swc_atoms",
  "swc_common",
@@ -1966,11 +2118,11 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_compat"
-version = "0.159.17"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.163.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "arrayvec",
- "indexmap 1.9.3",
+ "indexmap",
  "is-macro",
  "num-bigint",
  "serde",
@@ -1979,6 +2131,17 @@ dependencies = [
  "swc_common",
  "swc_config",
  "swc_ecma_ast",
+ "swc_ecma_compat_bugfixes",
+ "swc_ecma_compat_common",
+ "swc_ecma_compat_es2015",
+ "swc_ecma_compat_es2016",
+ "swc_ecma_compat_es2017",
+ "swc_ecma_compat_es2018",
+ "swc_ecma_compat_es2019",
+ "swc_ecma_compat_es2020",
+ "swc_ecma_compat_es2021",
+ "swc_ecma_compat_es2022",
+ "swc_ecma_compat_es3",
  "swc_ecma_transforms_base",
  "swc_ecma_transforms_classes",
  "swc_ecma_transforms_macros",
@@ -1990,10 +2153,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_macros"
-version = "0.5.3"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.5.4"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "swc_macros_common",
@@ -2002,13 +2164,13 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_module"
-version = "0.176.21"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.180.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "Inflector",
  "anyhow",
  "bitflags 2.4.0",
- "indexmap 1.9.3",
+ "indexmap",
  "is-macro",
  "path-clean",
  "pathdiff",
@@ -2028,11 +2190,11 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_optimization"
-version = "0.193.28"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.198.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "dashmap",
- "indexmap 1.9.3",
+ "indexmap",
  "once_cell",
  "petgraph",
  "rustc-hash",
@@ -2051,8 +2213,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_proposal"
-version = "0.167.21"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.171.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "either",
  "rustc-hash",
@@ -2070,12 +2232,12 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_react"
-version = "0.179.21"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.183.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "base64 0.13.1",
+ "base64",
  "dashmap",
- "indexmap 1.9.3",
+ "indexmap",
  "once_cell",
  "serde",
  "sha-1",
@@ -2093,16 +2255,16 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_testing"
-version = "0.136.8"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.140.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "ansi_term",
  "anyhow",
- "base64 0.13.1",
+ "base64",
  "hex",
  "serde",
  "serde_json",
- "sha-1",
+ "sha2",
  "sourcemap",
  "swc_common",
  "swc_ecma_ast",
@@ -2118,8 +2280,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_typescript"
-version = "0.183.27"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.188.11"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "ryu-js",
  "serde",
@@ -2134,10 +2296,10 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_usage_analyzer"
-version = "0.19.3"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.23.8"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "indexmap 1.9.3",
+ "indexmap",
  "rustc-hash",
  "swc_atoms",
  "swc_common",
@@ -2150,10 +2312,10 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_utils"
-version = "0.123.3"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.127.8"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "indexmap 1.9.3",
+ "indexmap",
  "num_cpus",
  "once_cell",
  "rustc-hash",
@@ -2167,8 +2329,8 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_visit"
-version = "0.95.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.98.5"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "num-bigint",
  "swc_atoms",
@@ -2180,10 +2342,9 @@ dependencies = [
 
 [[package]]
 name = "swc_eq_ignore_macros"
-version = "0.1.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.1.3"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "syn 2.0.38",
@@ -2191,8 +2352,8 @@ dependencies = [
 
 [[package]]
 name = "swc_error_reporters"
-version = "0.16.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.17.17"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
  "miette",
@@ -2203,10 +2364,10 @@ dependencies = [
 
 [[package]]
 name = "swc_fast_graph"
-version = "0.20.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.21.18"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "indexmap 1.9.3",
+ "indexmap",
  "petgraph",
  "rustc-hash",
  "swc_common",
@@ -2214,10 +2375,9 @@ dependencies = [
 
 [[package]]
 name = "swc_macros_common"
-version = "0.3.8"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.3.9"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
- "pmutil",
  "proc-macro2",
  "quote",
  "syn 2.0.38",
@@ -2225,8 +2385,8 @@ dependencies = [
 
 [[package]]
 name = "swc_node_comments"
-version = "0.19.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.20.17"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "dashmap",
  "swc_atoms",
@@ -2235,8 +2395,8 @@ dependencies = [
 
 [[package]]
 name = "swc_timer"
-version = "0.20.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.21.19"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "tracing",
 ]
@@ -2244,7 +2404,7 @@ dependencies = [
 [[package]]
 name = "swc_trace_macro"
 version = "0.1.3"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2253,8 +2413,8 @@ dependencies = [
 
 [[package]]
 name = "swc_visit"
-version = "0.5.7"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.5.9"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "either",
  "swc_visit_macros",
@@ -2262,8 +2422,8 @@ dependencies = [
 
 [[package]]
 name = "swc_visit_macros"
-version = "0.5.8"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.5.10"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "Inflector",
  "pmutil",
@@ -2329,15 +2489,16 @@ dependencies = [
 
 [[package]]
 name = "testing"
-version = "0.34.2"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.35.19"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "ansi_term",
- "cargo_metadata",
+ "cargo_metadata 0.15.4",
  "difference",
  "once_cell",
  "pretty_assertions",
  "regex",
+ "serde",
  "serde_json",
  "swc_common",
  "swc_error_reporters",
@@ -2348,13 +2509,12 @@ dependencies = [
 
 [[package]]
 name = "testing_macros"
-version = "0.2.11"
-source = "git+https://github.com/ef4/swc.git?branch=content-tag#ac6123fd8b5d931de21ae0b8b5689e4cc285ce36"
+version = "0.2.12"
+source = "git+https://github.com/ef4/swc.git?branch=content-tag#e2dd8cee5fcb16d87e1e389ae2aac6d44d14ee9a"
 dependencies = [
  "anyhow",
  "glob",
  "once_cell",
- "pmutil",
  "proc-macro2",
  "quote",
  "regex",
@@ -2401,37 +2561,6 @@ checksum = "3fdd6f064ccff2d6567adcb3873ca630700f00b5ad3f060c25b5dcfd9a4ce152"
 dependencies = [
  "cfg-if",
  "once_cell",
-]
-
-[[package]]
-name = "time"
-version = "0.3.36"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5dfd88e563464686c916c7e46e623e520ddc6d79fa6641390f2e3fa86e83e885"
-dependencies = [
- "deranged",
- "itoa",
- "num-conv",
- "powerfmt",
- "serde",
- "time-core",
- "time-macros",
-]
-
-[[package]]
-name = "time-core"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef927ca75afb808a4d64dd374f00a2adf8d0fcff8e7b184af886c3c87ec4a3f3"
-
-[[package]]
-name = "time-macros"
-version = "0.2.18"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3f252a68540fde3a3877aeea552b832b40ab9a69e318efd078774a01ddee1ccf"
-dependencies = [
- "num-conv",
- "time-core",
 ]
 
 [[package]]
@@ -2512,16 +2641,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "triomphe"
-version = "0.1.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0eee8098afad3fb0c54a9007aab6804558410503ad676d4633f9c2559a00ac0f"
-dependencies = [
- "serde",
- "stable_deref_trait",
-]
-
-[[package]]
 name = "typed-arena"
 version = "2.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2597,17 +2716,14 @@ checksum = "830b7e5d4d90034032940e4ace0d9a9a057e7a45cd94e6c007832e39edb82f6d"
 
 [[package]]
 name = "vergen"
-version = "7.5.1"
+version = "8.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f21b881cd6636ece9735721cf03c1fe1e774fe258683d084bb2812ab67435749"
+checksum = "2990d9ea5967266ea0ccf413a4aa5c42a93dbcfda9cb49a97de6931726b12566"
 dependencies = [
  "anyhow",
- "cfg-if",
- "enum-iterator",
- "getset",
+ "cargo_metadata 0.18.1",
+ "regex",
  "rustversion",
- "thiserror",
- "time",
 ]
 
 [[package]]

@@ -1,0 +1,1 @@
+let x = template(`Hello\\nWorld\\u1234`, { eval() { return eval(arguments[0]) }})

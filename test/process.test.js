@@ -34,7 +34,7 @@ describe(`process`, function () {
 
     expect(output).to.equalCode(
       `import { template } from "@ember/template-compiler";
-     let Foo = class Foo extends Component {
+     class Foo extends Component {
          greeting = 'Hello';
          static{
              template(\`{{this.greeting}}, \\\`lifeform\\\`!\`, {
