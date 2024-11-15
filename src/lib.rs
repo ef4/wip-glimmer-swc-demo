@@ -313,3 +313,19 @@ testcase! {
          return template_UUID(``, { eval() { return eval(arguments[0]) } });
        }"#
 }
+
+testcase! {
+  automatic_export_default,
+  r#"<template>Hello world</template>"#,
+  r#"import { template } from "@ember/template-compiler";
+      export default template(`Hello world`, { eval() { return eval(arguments[0]) } });
+   "#
+}
+
+testcase! {
+  automatic_export_default_typescript,
+  r#"<template>Hello world</template> satisfies MyType"#,
+  r#"import { template } from "@ember/template-compiler";
+      export default template(`Hello world`, { eval() { return eval(arguments[0]) } }) satisfies MyType;
+   "#
+}
