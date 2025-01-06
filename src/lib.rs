@@ -14,10 +14,10 @@ use swc_ecma_ast::{
     ModuleItem,
 };
 use swc_ecma_codegen::Emitter;
-use swc_ecma_parser::{lexer::Lexer, Parser, StringInput, Syntax, TsConfig};
+use swc_ecma_parser::{lexer::Lexer, Parser, StringInput, Syntax, TsSyntax};
 use swc_ecma_transforms::resolver;
 use swc_ecma_utils::private_ident;
-use swc_ecma_visit::{as_folder, VisitMutWith, VisitWith};
+use swc_ecma_visit::{visit_mut_pass, VisitMutWith, VisitWith};
 use uuid::Uuid;
 
 mod bindings;
@@ -70,10 +70,12 @@ impl Preprocessor {
             None => FileName::Anon,
         };
 
-        let source_file = self.source_map.new_source_file(filename, src.to_string());
+        let source_file = self
+            .source_map
+            .new_source_file(filename.into(), src.to_string());
 
         let lexer = Lexer::new(
-            Syntax::Typescript(TsConfig {
+            Syntax::Typescript(TsSyntax {
                 decorators: true,
                 ..Default::default()
             }),
@@ -105,10 +107,12 @@ impl Preprocessor {
             None => FileName::Anon,
         };
 
-        let source_file = self.source_map.new_source_file(filename, src.to_string());
+        let source_file = self
+            .source_map
+            .new_source_file(filename.into(), src.to_string());
 
         let lexer = Lexer::new(
-            Syntax::Typescript(TsConfig {
+            Syntax::Typescript(TsSyntax {
                 decorators: true,
                 ..Default::default()
             }),
@@ -126,7 +130,7 @@ impl Preprocessor {
                 Uuid::new_v4().to_string().replace("-", "")
             ));
             let mut needs_import = false;
-            parsed_module.visit_mut_with(&mut as_folder(transform::TransformVisitor::new(
+            parsed_module.visit_mut_with(&mut visit_mut_pass(transform::TransformVisitor::new(
                 &id,
                 Some(&mut needs_import),
             )));
@@ -210,12 +214,14 @@ fn insert_import(
                 imported: Some(ModuleExportName::Ident(Ident::new(
                     target_specifier.into(),
                     Default::default(),
+                    Default::default(),
                 ))),
                 is_type_only: false,
             })],
             src: Box::new(target_module.into()),
             type_only: false,
             with: None,
+            phase: Default::default(),
         })),
     );
 }

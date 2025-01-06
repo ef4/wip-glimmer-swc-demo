@@ -2,8 +2,8 @@ use swc_common::comments::SingleThreadedComments;
 use swc_common::Span;
 use swc_common::{self, sync::Lrc, FileName, SourceMap};
 use swc_ecma_ast::{Expr, Module};
-use swc_ecma_parser::{lexer::Lexer, EsConfig, Parser, StringInput, Syntax};
-use swc_ecma_visit::{as_folder, VisitMut, VisitMutWith};
+use swc_ecma_parser::{lexer::Lexer, EsSyntax, Parser, StringInput, Syntax};
+use swc_ecma_visit::{visit_mut_pass, VisitMut, VisitMutWith};
 
 lazy_static! {
     static ref SCOPE_PARAMS: Module = parse(r#"({ eval() { return eval(arguments[0]); } })"#);
@@ -19,10 +19,10 @@ fn parse(src: &str) -> Module {
     let source_map: Lrc<SourceMap> = Default::default();
     let comments = SingleThreadedComments::default();
 
-    let source_file = source_map.new_source_file(FileName::Real(filename), src.to_string());
+    let source_file = source_map.new_source_file(FileName::Real(filename).into(), src.to_string());
 
     let lexer = Lexer::new(
-        Syntax::Es(EsConfig {
+        Syntax::Es(EsSyntax {
             decorators: true,
             ..Default::default()
         }),
@@ -46,7 +46,7 @@ impl VisitMut for SpanReplacer {
 
 fn generate_expression(span: Span, template_module: &Module) -> Box<Expr> {
     let mut module = template_module.clone();
-    module.visit_mut_with(&mut as_folder(SpanReplacer { span }));
+    module.visit_mut_with(&mut visit_mut_pass(SpanReplacer { span }));
     module
         .body
         .first()
